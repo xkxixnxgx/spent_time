@@ -14,7 +14,7 @@ class users(db.Model):
 
 
 class about_user(db.Model):
-    users_id = id.users(db.Integer, foreign_key=True)
+    users_id = db.Column(db.Integer, nullable=False) # тут необходимо сделать ссылку по внешнему ключу на таблицу users
     picture_user = db.Column(db.String, nullable=True)
     login_users = db.Column(db.String, nullable=True)
 
