@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+<<<<<<< HEAD
 class users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_email = db.Column(db.String, unique=True, nullable=False)
@@ -17,12 +18,34 @@ class about_user(db.Model):
     users_id = db.Column(db.Integer, nullable=False) # тут необходимо сделать ссылку по внешнему ключу на таблицу users
     picture_user = db.Column(db.String, nullable=True)
     login_users = db.Column(db.String, nullable=True)
+=======
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False, index=True)
+    user_password = db.Column(db.String(128), nullable=False)
+    role = db.Column(db.String(10), index=True)
+
+    def __repr__(self):
+        return '<User {}>'.format(self.username)
+
+
+class About_user(db.Model):
+    id = db.Column(db.Integer, nullable=False) # тут необходимо сделать ссылку по внешнему ключу на таблицу users
+    picture_user = db.Column(db.String, nullable=True)
+    user_email = db.Column(db.String, nullable=True)
+    user_rank = db.Column(db.String, nullable=False)
+    date_reg = db.Column(db.Text, nullable=False)
+>>>>>>> 8084cea60ac5e5fbbcce3f52fe2af1890eb9fd6a
 
     def __repr__(self):
         return '<User {}>'.format(self.user_email)
 
 
+<<<<<<< HEAD
 class tracks(db.Model):
+=======
+class Tracks(db.Model):
+>>>>>>> 8084cea60ac5e5fbbcce3f52fe2af1890eb9fd6a
     id = db.Column(db.Integer, primary_key=True)
     users_id = id.users (db.Integer, foreign_key=True)
     # тут необходимо уточнить, что для конкретного пользователя имена треков уникальны, в то время как для общей
