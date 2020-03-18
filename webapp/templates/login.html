@@ -3,14 +3,14 @@
 {% block body %}
 <form action="" method="post">
     {{ form.hidden_tag() }}
-    <p>
-        {{ form.username.label }}<br>
+    <div class="form-group">
+        {{ form.username.label }}
         {{ form.username() }}
-    </p>
-    <p>
+    </div>
+    <div class="form-group">
         {{ form.password.label }}<br>
         {{ form.password() }}
-    </p>
-    <p>{{ form.submit }}</p>
+    </div>
+    {{ form.submit }}
 </form>
 {% endblock %}
