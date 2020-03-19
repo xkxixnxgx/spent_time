@@ -1,10 +1,8 @@
 .vscode/
 __pycache__/
 venv/
-<<<<<<< HEAD
-*.db
 s_t/
-=======
-config.py
 *.db
->>>>>>> 8084cea60ac5e5fbbcce3f52fe2af1890eb9fd6a
+config.py
+test.py
+.gitattributes
