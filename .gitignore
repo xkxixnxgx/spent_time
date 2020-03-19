@@ -4,5 +4,3 @@ venv/
 s_t/
 *.db
 config.py
-test.py
-.gitattributes
