@@ -1,7 +1,8 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<form action="" method="post">
+
+<form action="{{ url_for('process_login') }}" method="POST">
     {{ form.hidden_tag() }}
     <div class="form-group">
         {{ form.username.label }}
@@ -13,4 +14,5 @@
     </div>
     {{ form.submit }}
 </form>
+
 {% endblock %}

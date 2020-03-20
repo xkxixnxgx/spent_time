@@ -16,3 +16,5 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 # адрес на жестком диске для базы
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '..', 'webapp.db')
+
+SECRET_KEY = 'ehuiwevwevwbveu'
