@@ -28,7 +28,7 @@ class User(db.Model, UserMixin):
 
 
 class About_user(db.Model):
-    id = db.Column(db.Integer, primary_key=True, nullable=False) # тут необходимо сделать ссылку по внешнему ключу на таблицу users
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
     picture_user = db.Column(db.String, nullable=True)
     username = db.Column(db.String(50),  nullable=True, index=True)
 

@@ -1,6 +1,6 @@
 .vscode/
 __pycache__/
-venv/
+env/
 s_t/
 *.db
 config.py

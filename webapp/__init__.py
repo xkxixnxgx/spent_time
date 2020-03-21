@@ -1,7 +1,6 @@
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
-# импортируем структуру базы данных
 from webapp.model import db, User
 from webapp.config import SECRET_KEY
 from webapp.forms import LoginForm
