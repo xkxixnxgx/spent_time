@@ -1,9 +1,9 @@
-from flask import Flask, render_template, flash, redirect, url_for
+from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 from webapp.model import db, User
 from webapp.config import SECRET_KEY
-from webapp.forms import LoginForm
+from webapp.forms import LoginForm, RegisterForm
 
 
 
@@ -28,17 +28,31 @@ def create_app():
     def about():
         return render_template('about.html')
 
+    @app.route('/register', methods=['GET', 'POST'])
+    def register():
+        title = 'Register'
+        form = RegisterForm(request.form)
+        if request.method == 'POST' and form.validate():
+            username = form.username.data
+            user_email = form.user_email.data
+            password = form.password.data
+
+            flash('You are now registered and can log in', 'success')
+
+            return redirect(url_for('login'))
+
+        return render_template('register.html', page_title=title, form=form)
 
     @app.route('/login')
     def login():
         if current_user.is_authenticated:
             return redirect(url_for('index'))
-        title = 'Sign in'
+        title = 'Log in'
         login_form = LoginForm()
         return render_template('login.html', page_title=title, form=login_form)
 
 
-    @app.route('/process-login', methods=['POST'])
+    @app.route('/process_login', methods=['POST'])
     def process_login():
         form = LoginForm()
 
@@ -46,16 +60,16 @@ def create_app():
             user = User.query.filter(User.username == form.username.data).first()
             if user and user.check_password(form.password.data):
                 login_user(user)
-                flash('You have successfully logged in.')
+                flash('You have successfully logged in', 'success')
                 return redirect(url_for('index'))
 
-        flash('The password is incorrect')
+        flash('The password is incorrect', 'warning')
         return redirect(url_for('login'))
 
     @app.route('/logout')
     def logout():
         logout_user()
-        flash('You have successfully logged out.')
+        flash('You have successfully logged out', 'success')
         return redirect(url_for('index'))
 
     @app.route('/admin')

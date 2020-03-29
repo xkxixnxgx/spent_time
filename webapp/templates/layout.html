@@ -7,24 +7,20 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
     <body>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="alert alert-warning" role="alert">
-            {% for message in messages %}
-                {{ message }}<br>
-            {% endfor %}
-        </div>
-            {% endif %}
-        {% endwith %}
         {% include 'includes/_navbar.html' %}
         <div class='container'>
-        <h1>{{ page_title }}</h1>
-        <div class='row'>
-            <div class='col-8'>
-            {% block body %}{% endblock %}
+            <br>
+            <br>
+            <br>
+            {% include 'includes/_messages.html' %}
+
+            <h1>{{ page_title }}</h1>
+            <div class='row'>
+                <div class='col-8'>
+                {% block body %}{% endblock %}
+                </div>
             </div>
-        </div>
-        </div>
+            </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     user_password = db.Column(db.String(128), nullable=False)
     role = db.Column(db.String(10), index=True, nullable=False)
     date_reg = db.Column(db.Text, nullable=False)
+    picture_user = db.Column(db.String, nullable=True)
+    username = db.Column(db.String(50),  nullable=True, index=True)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -25,15 +27,6 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
-
-
-class About_user(db.Model):
-    id = db.Column(db.Integer, primary_key=True, nullable=False)
-    picture_user = db.Column(db.String, nullable=True)
-    username = db.Column(db.String(50),  nullable=True, index=True)
-
-    def __repr__(self):
-        return '<User {}>'.format(self.user_email)
 
 
 class Tracks(db.Model):
