@@ -4,16 +4,16 @@
 <form action="{{ url_for('register') }}" method="POST">
     {{ form.hidden_tag() }}
     <div class="form-group">
-        {{ form.username.label }}
-        {{ form.username() }}
+        {{ form.user_email.label }}
+        {{ form.user_email() }}
     </div>
     <div class="form-group">
         {{ form.user_email.label }}<br>
         {{ form.user_email() }}
     </div>
     <div class="form-group">
-        {{ form.password.label }}<br>
-        {{ form.password() }}
+        {{ form.user_password.label }}<br>
+        {{ form.user_password() }}
     </div>
     <div class="form-group">
         {{ form.confirm.label }}<br>

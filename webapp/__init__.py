@@ -38,7 +38,7 @@ def create_app():
         if request.method == 'POST' and form.validate():
             username = form.username.data
             user_email = form.user_email.data
-            password = form.password.data
+            password = form.user_password.data
 
             flash('You are now registered and can log in', 'success')
 
