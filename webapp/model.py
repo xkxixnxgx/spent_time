@@ -32,7 +32,6 @@ class User(db.Model, UserMixin):
         return '<User {}>'.format(self.user_email)
 
 
-
 class Tracks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # users_id = id.users (db.Integer, foreign_key=True)
