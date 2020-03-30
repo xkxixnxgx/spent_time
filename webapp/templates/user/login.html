@@ -3,10 +3,10 @@
 # hidden_tag() это блок который выводит скрытые поля
 # lable это наименование поля из forms.py
 
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 
-{% block body %}
-<form action="{{ url_for('process_login') }}" method="POST">
+{% block content %}
+<form action="{{ url_for('user.process_login') }}" method="POST">
     {{ form.hidden_tag() }}
     <div class="form-group">
         {{ form.user_email.label }}

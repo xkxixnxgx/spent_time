@@ -1,9 +1,7 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
-db = SQLAlchemy()
+from webapp.db import db
 
 
 class User(db.Model, UserMixin):
@@ -30,17 +28,3 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return '<User {}>'.format(self.user_email)
-
-
-class Tracks(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    # users_id = id.users (db.Integer, foreign_key=True)
-    # тут необходимо уточнить, что для конкретного пользователя имена треков уникальны, в то время как для общей
-    # базы они могут повторятся у нескольких пользователей
-    track_name = db.Column(db.String, unique=True, nullable=False)
-    track_value = db.Column(db.Integer, nullable=True)
-
-    def __repr__(self):
-        return '<Track {}>'.format(self.track_name)
-
-
