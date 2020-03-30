@@ -1,10 +1,9 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
-from webapp.model import db, User
+from webapp.model import db, User, Tracks
 from webapp.config import SECRET_KEY
 from webapp.forms import LoginForm, RegisterForm
-
 
 
 def create_app():
@@ -24,6 +23,10 @@ def create_app():
     def index():
         return render_template('index.html')
 
+    @app.route('/profile')
+    def profile():
+        return render_template('profile.html')
+
     @app.route('/about')
     def about():
         return render_template('about.html')
@@ -35,7 +38,7 @@ def create_app():
         if request.method == 'POST' and form.validate():
             username = form.username.data
             user_email = form.user_email.data
-            password = form.password.data
+            password = form.user_password.data
 
             flash('You are now registered and can log in', 'success')
 
@@ -51,14 +54,12 @@ def create_app():
         login_form = LoginForm()
         return render_template('login.html', page_title=title, form=login_form)
 
-
-    @app.route('/process_login', methods=['POST'])
+    @app.route('/process-login', methods=['POST'])
     def process_login():
         form = LoginForm()
-
         if form.validate_on_submit():
-            user = User.query.filter(User.username == form.username.data).first()
-            if user and user.check_password(form.password.data):
+            user = User.query.filter(User.user_email == form.user_email.data).first()
+            if user and user.check_password(form.user_password.data):
                 login_user(user)
                 flash('You have successfully logged in', 'success')
                 return redirect(url_for('index'))
@@ -79,7 +80,6 @@ def create_app():
             return 'Hello admin!'
         else:
             return 'You are not admin!'
-    
 
     if __name__ == '__main__':
         app.run(debug=True)
