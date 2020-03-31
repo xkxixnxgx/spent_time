@@ -1,7 +1,7 @@
 from webapp.db import db
 
 
-class Tracks(db.Model):
+class Track(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # users_id = id.users (db.Integer, foreign_key=True)
     # тут необходимо уточнить, что для конкретного пользователя имена треков уникальны, в то время как для общей
