@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     user_email = db.Column(db.String(50), nullable=False, unique=True)
     user_password = db.Column(db.String(128), nullable=False)
     role = db.Column(db.String(10), index=True, nullable=True)
-    date_reg = db.Column(db.Text, nullable=True)
+    date_reg = db.Column(db.Text, nullable=False)
     picture_user = db.Column(db.String, nullable=True)
     username = db.Column(db.String(50),  nullable=True, index=True)
 
