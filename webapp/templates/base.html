@@ -13,15 +13,6 @@
             <br>
             <br>
             {% include 'includes/_messages.html' %}
-            <div class="row">
-                <div class="col"></div>
-                <div class="col">
-                    <p class="text-center">
-                        <h1>{{ page_title }}</h1>
-                    </p>
-                </div>
-                <div class="col"></div>
-            </div>
             <div class='row'>
                 <div class='col-8'>
                 {% block body %}{% endblock %}
@@ -31,8 +22,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     </body>
 </html>
-
-
 
 {% block content %}{% endblock %}
 

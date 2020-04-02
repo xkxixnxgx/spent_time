@@ -8,4 +8,4 @@ blueprint = Blueprint('tracks', __name__)
 def login():
     title = 'tracks'
     tracks_form = TrackForm()
-    return render_template('tracks.html', page_title=title, form=tracks_form)
+    return render_template('tracks/tracks.html', page_title=title, form=tracks_form)
