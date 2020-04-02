@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from webapp.tracks.forms import TrackForm
 
-blueprint = Blueprint('tracks', __name__, url_prefix='/tracks')
+blueprint = Blueprint('tracks', __name__)
 
 
 @blueprint.route('/tracks')
