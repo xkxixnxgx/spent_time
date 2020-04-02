@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_login import LoginManager
 
 from webapp.db import db
@@ -27,10 +27,6 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(user_id)
-
-    @app.route('/')
-    def index():
-        title
 
     if __name__ == '__main__':
         app.run(debug=True)

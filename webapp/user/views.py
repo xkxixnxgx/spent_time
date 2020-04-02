@@ -8,10 +8,10 @@ blueprint = Blueprint('user', __name__, url_prefix='/user')
 
 
 @blueprint.route('/')
-def start():
+def index():
     title = 'start'
     start_form = StartForm()
-    return render_template('user/start.html', page_title=title, form=start_form)
+    return render_template('user/index.html', page_title=title, form=start_form)
 
 
 @blueprint.route('/register', methods=['GET', 'POST'])
@@ -34,7 +34,7 @@ def login():
         return redirect(url_for('index'))
     title = 'Log in'
     login_form = LoginForm()
-    return render_template('login.html', page_title=title, form=login_form)
+    return render_template('user/login.html', page_title=title, form=login_form)
 
 
 @blueprint.route('/process-login', methods=['POST'])
@@ -45,7 +45,7 @@ def process_login():
         if user and user.check_password(form.user_password.data):
             login_user(user, remember=form.remember_me.data)
             flash('You have successfully logged in', 'success')
-            return redirect(url_for('/'))
+            return redirect(url_for('user.index'))
 
     flash('The password is incorrect', 'warning')
     return redirect(url_for('user.login'))
@@ -55,13 +55,14 @@ def process_login():
 def logout():
     logout_user()
     flash('You have successfully logged out', 'success')
-    return redirect(url_for("index"))
+    return redirect(url_for("user.index"))
 
 
 @blueprint.route('/admin')
 @admin_required
 def admin_index():
     if current_user.is_admin:
-        return 'Hi, admin!'
+        title = 'admin console'
+        return render_template('user/admin.html', page_tittle=title)
     else:
         return 'You is not admin.'
