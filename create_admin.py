@@ -2,7 +2,8 @@ from getpass import getpass # скрытие поля с паролем от с�
 import sys # модуль для взаимодействия с системными функциями, для корректного завершения функций
 
 from webapp import create_app
-from webapp.model import db, User
+from webapp.db import db
+from webapp.user.models import User
 from datetime import datetime
 
 app = create_app()
