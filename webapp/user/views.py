@@ -28,12 +28,12 @@ def register():
 
 @blueprint.route('/process-reg', methods=['POST'])
 def process_reg():
-    form = RegisterForm
+    form = RegisterForm()
     if form.validate_on_submit():
         date_now = datetime.now()
         date_reg = date_now.strftime('%d.%m.%Y')
-        new_user = User(user_email=form.user_email.data, user_password=form.user_email.data, role='user', date_reg=date_reg)
-        new_user.set_password(form.password.date)
+        new_user = User(user_email=form.user_email.data, user_password=form.user_password.data, role='user', date_reg=date_reg)
+        new_user.set_password(form.user_password)
         db.session.add(new_user)
         db.session.commit()
         flash('You have successfully registered.')
