@@ -33,7 +33,7 @@ def process_reg():
         date_now = datetime.now()
         date_reg = date_now.strftime('%d.%m.%Y')
         new_user = User(user_email=form.user_email.data, user_password=form.user_password.data, role='user', date_reg=date_reg)
-        new_user.set_password(form.user_password)
+        new_user.set_password(form.user_password.data)
         db.session.add(new_user)
         db.session.commit()
         flash('You have successfully registered.')
