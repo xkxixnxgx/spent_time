@@ -1,23 +1,42 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">10000 hours</a>
+<nav class="navbar navbar-expand-md navbar navbar-light" style="background-color: #facf23; fixed-top">
+    <a class="navbar-brand mb-0 h1" href="#">
+        <img src="home/polina/projects/project_spent_time/clock.jpg" width="30" height="30" alt="">
+        10,000-Hour Rule
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/tracks">Tracks</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/profile">Profile</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/about">About us</a>
-        </li>
-      </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/tracks">Tracks</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/user/profile">Profile</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/about">About us</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user.profile') }}">Your profile</a>
+                </li>
+                {% if current_user.is_admin %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.admin_index') }}">Admin panel</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user.logout') }}">Log out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user.login') }}">Log in</a>
+                </li>
+            {% endif %}
+        </ul>
     </div>
-  </nav>
+</nav>
