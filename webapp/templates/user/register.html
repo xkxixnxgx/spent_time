@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="container">
+              <div class="row justify-content-md-center">
+                <div class="col col-lg-2">
+                </div>
+                <div class="col-md-auto">
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                </div>
+                <div class="col col-lg-2">
+                </div>
+              </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <p class="text-centre">
         <form action="{{ url_for('user.process_reg') }}" method="POST">
             <div class="container">
