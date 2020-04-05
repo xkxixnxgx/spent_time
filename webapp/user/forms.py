@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
 
 from wtforms import BooleanField, StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Length, EqualTo, Email
+from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
+
+from webapp.user.models import User
 
 
 class StartForm(FlaskForm):
@@ -21,6 +23,12 @@ class RegisterForm(FlaskForm):
                             render_kw={"class": "form-control"})
     submit = SubmitField('Create account',
                          render_kw={"class": "btn btn-primary"})
+
+    def validate_user_email(self, user_email):
+        user_count = User.query.filter_by(user_email=user_email.data).count()
+        if user_count > 0:
+            raise ValidationError('A user with this email address already exists.')
+
 
 
 class LoginForm(FlaskForm):

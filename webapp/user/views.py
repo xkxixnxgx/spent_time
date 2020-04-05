@@ -39,8 +39,11 @@ def process_reg():
         db.session.commit()
         flash('You have successfully registered.')
         return redirect(url_for('user.login'))
-    flash('Incorrect data. Fix errors when entering data.')
-    return redirect(url_for('user.register'))
+    else:
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(f"Error in the field {getattr(form, field).label.text}: {error}")
+        return redirect(url_for('user.register'))
 
 
 @blueprint.route('/login')

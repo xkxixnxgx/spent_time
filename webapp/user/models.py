@@ -6,7 +6,7 @@ from webapp.db import db
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, index=True, primary_key=True)
-    user_email = db.Column(db.String(50), nullable=False, unique=True)
+    user_email = db.Column(db.String(50), unique=True, nullable=False)
     user_password = db.Column(db.String(128), nullable=False)
     role = db.Column(db.String(10), index=True, nullable=False)
     date_reg = db.Column(db.String(12), nullable=False)
@@ -25,6 +25,3 @@ class User(db.Model, UserMixin):
     @property
     def is_admin(self):
         return self.role == 'admin'
-
-    def __repr__(self):
-        return '<User {}>'.format(self.user_email)
