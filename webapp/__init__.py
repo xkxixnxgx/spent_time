@@ -1,72 +1,35 @@
-from flask import Flask, render_template, flash, redirect, url_for
-from flask_login import LoginManager, current_user, login_required, login_user, logout_user
+from flask import Flask, render_template
+from flask_login import LoginManager
 
-# импортируем структуру базы данных
-from webapp.model import db, User
+from webapp.db import db
+from flask_migrate import Migrate
+
+from webapp.user.models import User
 from webapp.config import SECRET_KEY
-from webapp.forms import LoginForm
+from webapp.user.forms import LoginForm
 
+from webapp.user.views import blueprint as user_blueprint
+from webapp.tracks.views import blueprint as tracks_blueprint
+from webapp.about.views import blueprint as about_blueprint
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
     db.init_app(app)
+    migrate = Migrate(app, db)
 
     login_manager = LoginManager()
     login_manager.init_app(app)
-    login_manager.login_view = 'login'
+    login_manager.login_view = 'user.login'
+
+    app.register_blueprint(about_blueprint)
+    app.register_blueprint(user_blueprint)
+    app.register_blueprint(tracks_blueprint)
 
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(user_id)
-
-    @app.route('/')
-    def index():
-        return render_template('index.html')
-
-    @app.route('/about')
-    def about():
-        return render_template('about.html')
-
-
-    @app.route('/login')
-    def login():
-        if current_user.is_authenticated:
-            return redirect(url_for('index'))
-        title = 'Sign in'
-        login_form = LoginForm()
-        return render_template('login.html', page_title=title, form=login_form)
-
-
-    @app.route('/process-login', methods=['POST'])
-    def process_login():
-        form = LoginForm()
-
-        if form.validate_on_submit():
-            user = User.query.filter(User.username == form.username.data).first()
-            if user and user.check_password(form.password.data):
-                login_user(user)
-                flash('You have successfully logged in.')
-                return redirect(url_for('index'))
-
-        flash('The password is incorrect')
-        return redirect(url_for('login'))
-
-    @app.route('/logout')
-    def logout():
-        logout_user()
-        flash('You have successfully logged out.')
-        return redirect(url_for('index'))
-
-    @app.route('/admin')
-    @login_required
-    def admin_index():
-        if current_user.is_admin:
-            return 'Hello admin!'
-        else:
-            return 'You are not admin!'
-    
 
     if __name__ == '__main__':
         app.run(debug=True)

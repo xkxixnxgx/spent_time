@@ -1,5 +1,6 @@
 # импортируем модуль питона для удобной работы с файловой системой
 import os
+from datetime import timedelta
 
 # выводит на печать адрес текущей папки
 # print(os.path.abspath(os.path.dirname(__file__)))
@@ -18,3 +19,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '..', 'webapp.db')
 
 SECRET_KEY = 'ehuiwevwevwbveu'
+
+REMEMBER_COOKIE_DURATION = timedelta(days=5)
+
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+#123
+
