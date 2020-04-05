@@ -22,5 +22,7 @@ SECRET_KEY = 'ehuiwevwevwbveu'
 
 REMEMBER_COOKIE_DURATION = timedelta(days=5)
 
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 #123
 

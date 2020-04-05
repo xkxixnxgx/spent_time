@@ -3,6 +3,9 @@ from flask_login import current_user, login_user, logout_user
 from webapp.user.forms import LoginForm, StartForm, RegisterForm, AdminForm
 from webapp.user.models import User
 from webapp.user.decorators import admin_required
+from datetime import datetime
+
+from webapp import db
 
 blueprint = Blueprint('user', __name__, url_prefix='/user')
 
@@ -14,19 +17,29 @@ def index():
     return render_template('user/index.html', page_title=title, form=start_form)
 
 
-@blueprint.route('/register', methods=['GET', 'POST'])
+@blueprint.route('/register')
 def register():
-    title = 'Register'
+    if current_user.is_authenticated:
+        return redirect(url_for('user.index'))
+    title = 'Registration'
+    reg_form = RegisterForm()
+    return render_template('user/register.html', page_title=title, form=reg_form)
+
+
+@blueprint.route('/process-reg', methods=['POST'])
+def process_reg():
     form = RegisterForm()
-    if request.method == 'POST' and form.validate():
-        user_email = form.user_email.data
-        
-        flash('You are now registered and can log in', 'success')
-
+    if form.validate_on_submit():
+        date_now = datetime.now()
+        date_reg = date_now.strftime('%d.%m.%Y')
+        new_user = User(user_email=form.user_email.data, user_password=form.user_password.data, role='user', date_reg=date_reg)
+        new_user.set_password(form.user_password.data)
+        db.session.add(new_user)
+        db.session.commit()
+        flash('You have successfully registered.')
         return redirect(url_for('user.login'))
-
-    return render_template('user/register.html', page_title=title, form=form)
-
+    flash('Incorrect data. Fix errors when entering data.')
+    return redirect(url_for('user.register'))
 
 @blueprint.route('/login')
 def login():

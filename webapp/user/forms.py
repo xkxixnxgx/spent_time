@@ -9,11 +9,18 @@ class StartForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    username = StringField('Name', validators=[DataRequired(), Length(min=1, max=50)], render_kw={"class": "form-control"})
-    user_email = StringField('Email', validators=[DataRequired(), Length(min=6, max=50), Email()], render_kw={"class": "form-control"})
-    user_password = PasswordField('Password', validators=[DataRequired(), EqualTo('confirm', message='Passwords do not match')], render_kw={"class": "form-control"})
-    confirm = PasswordField('Confirm Password', render_kw={"class": "form-control"})
-    submit = SubmitField('Create account', render_kw={"class": "btn btn-primary"})
+    username = StringField('Name',
+                           validators=[DataRequired(), Length(min=1, max=30)],
+                           render_kw={"class": "form-control"})
+    user_email = StringField('Email',
+                             validators=[DataRequired(), Length(min=6, max=50), Email()],
+                             render_kw={"class": "form-control"})
+    user_password = PasswordField('Password', validators=[DataRequired()], render_kw={"class": "form-control"})
+    confirm = PasswordField('Confirm Password',
+                            validators=[DataRequired(), EqualTo('user_password', message='Passwords do not match')],
+                            render_kw={"class": "form-control"})
+    submit = SubmitField('Create account',
+                         render_kw={"class": "btn btn-primary"})
 
 
 class LoginForm(FlaskForm):
@@ -22,10 +29,23 @@ class LoginForm(FlaskForm):
     user_email = StringField('Email', validators=[DataRequired()], render_kw={"class": "form-control"})
     user_password = PasswordField('Password', validators=[DataRequired()], render_kw={"class": "form-control"})
     remember_me = BooleanField('Remember me', default=True, render_kw={"class": "form-check-input"})
-    submit = SubmitField('Submit', render_kw={"class": "btn btn-primary"})
+    submit = SubmitField('Log in', render_kw={"class": "btn btn-primary"})
 
 
 class AdminForm(FlaskForm):
     admin_form = StringField('Admin', render_kw={"class": "alert alert-secondary"})
 
 
+class ProfileForm(FlaskForm):
+    username = StringField('Name', validators=[DataRequired(), Length(min=1, max=50)],
+                           render_kw={"class": "form-control"})
+    user_email = StringField('Email', validators=[DataRequired(), Length(min=6, max=50), Email()],
+                             render_kw={"class": "form-control"})
+    user_password = PasswordField('Password',
+                                  validators=[DataRequired(), EqualTo('confirm', message='Passwords do not match')],
+                                  render_kw={"class": "form-control"})
+    date_reg = StringField('Name', validators=[DataRequired(), Length(min=1, max=50)],
+                           render_kw={"class": "form-control"})
+    picture_user = StringField('Name', validators=[DataRequired(), Length(min=1, max=50)],
+                               render_kw={"class": "form-control"})
+    submit = SubmitField('Update account', render_kw={"class": "btn btn-primary"})
