@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask_login import LoginManager
 
 from webapp.db import db
@@ -11,6 +11,7 @@ from webapp.user.forms import LoginForm
 from webapp.user.views import blueprint as user_blueprint
 from webapp.tracks.views import blueprint as tracks_blueprint
 from webapp.about.views import blueprint as about_blueprint
+from webapp.main.views import blueprint as main_blueprint
 
 
 def create_app():
@@ -26,6 +27,8 @@ def create_app():
     app.register_blueprint(about_blueprint)
     app.register_blueprint(user_blueprint)
     app.register_blueprint(tracks_blueprint)
+    app.register_blueprint(main_blueprint)
+
 
     @login_manager.user_loader
     def load_user(user_id):

@@ -13,7 +13,7 @@ def admin_required(func):
         elif not current_user.is_authenticated:
             return current_app.login_manager.unauthorized()
         elif not current_user.is_admin:
-            flash('Эта страница доступна только админам')
+            flash('This page is available only to admins')
             return redirect(url_for('tracks.index'))
         return func(*args, **kwargs)
     return decorated_view

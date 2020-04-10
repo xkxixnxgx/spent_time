@@ -19,9 +19,9 @@ def index():
 
 @blueprint.route('/register')
 def register():
+    title = 'Register'
     if current_user.is_authenticated:
         return redirect(url_for('user.index'))
-    title = 'Registration'
     reg_form = RegisterForm()
     return render_template('user/register.html', page_title=title, form=reg_form)
 
@@ -48,9 +48,9 @@ def process_reg():
 
 @blueprint.route('/login')
 def login():
+    title = 'Log in'
     if current_user.is_authenticated:
         return redirect(url_for('user.index'))
-    title = 'Log in'
     login_form = LoginForm()
     return render_template('user/login.html', page_title=title, form=login_form)
 
@@ -92,7 +92,7 @@ def admin_index():
 @blueprint.route('/profile')
 def profile():
     if current_user.is_authenticated:
-        title = 'You profile'
+        title = 'Your profile'
         profile_form = ProfileForm()
         return render_template('user/profile.html', page_tittle=title, form=profile_form)
     else:

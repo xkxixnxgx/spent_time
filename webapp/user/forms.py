@@ -22,7 +22,7 @@ class RegisterForm(FlaskForm):
                             validators=[DataRequired(), EqualTo('user_password', message='Passwords do not match')],
                             render_kw={"class": "form-control"})
     submit = SubmitField('Create account',
-                         render_kw={"class": "btn btn-primary"})
+                         render_kw={"class": "btn btn-success"})
 
     def validate_user_email(self, user_email):
         user_count = User.query.filter_by(user_email=user_email.data).count()
@@ -37,7 +37,7 @@ class LoginForm(FlaskForm):
     user_email = StringField('Email', validators=[DataRequired()], render_kw={"class": "form-control"})
     user_password = PasswordField('Password', validators=[DataRequired()], render_kw={"class": "form-control"})
     remember_me = BooleanField('Remember me', default=True, render_kw={"class": "form-check-input"})
-    submit = SubmitField('Log in', render_kw={"class": "btn btn-primary"})
+    submit = SubmitField('Log in', render_kw={"class": "btn btn-success"})
 
 
 class AdminForm(FlaskForm):
@@ -56,4 +56,4 @@ class ProfileForm(FlaskForm):
                            render_kw={"class": "form-control"})
     picture_user = StringField('Name', validators=[DataRequired(), Length(min=1, max=50)],
                                render_kw={"class": "form-control"})
-    submit = SubmitField('Update account', render_kw={"class": "btn btn-primary"})
+    submit = SubmitField('Update account', render_kw={"class": "btn btn-success"})

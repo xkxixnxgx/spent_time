@@ -6,6 +6,5 @@ blueprint = Blueprint('about', __name__)
 
 @blueprint.route('/about')
 def about():
-    title = 'about'
     about_form = AboutForm()
-    return render_template('about/about.html', page_title=title, form=about_form)
+    return render_template('about/about.html', form=about_form)

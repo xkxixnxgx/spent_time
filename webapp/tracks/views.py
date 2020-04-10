@@ -10,6 +10,6 @@ blueprint = Blueprint('tracks', __name__)
 
 @blueprint.route('/tracks')
 def login():
-    title = 'tracks'
+    title = 'Tracks'
     tracks_form = TrackForm()
     return render_template('tracks/tracks.html', page_title=title, form=tracks_form)
