@@ -17,9 +17,12 @@
     </div>
     <br>
     <br>
+    <form action="{{ url_for('tracks.tracks_points') }}" method="GET">
     <div class="d-flex justify-content-between">
         <div class="col-2">
-            <button type="button" class="btn btn-link">Track 1</button>
+            <button type="button" class="btn btn-link">
+                <form action="{{ url_for('tracks.the_track') }}>
+            </button>
         </div>
         <div class="col-2">
             <!-- Button trigger modal -->
@@ -38,12 +41,12 @@
                   </div>
                   <div class="modal-body">
                     <div class="form-group">
-                        {{ form.track.label }}
-                        {{ form.track() }}
+                        {{ form.track_name.label }}
+                        {{ form.track_name() }}
                     </div>
                     <div class="form-group">
-                        {{ form.time_all.label }}<br>
-                        {{ form.time_all() }}
+                        {{ form.total_time.label }}<br>
+                        {{ form.total_time() }}
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -65,7 +68,7 @@
               Add track
             </button>
     <!-- Modal -->
-    <div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter_2"
+    <div aria-hidden="true" aria-labelledby="exampleModalCenterTitle_2" class="modal fade" id="exampleModalCenter_2"
          role="dialog" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -77,12 +80,12 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-                {{ form.track.label }}
-                {{ form.track() }}
+                {{ form.track_name.label }}
+                {{ form.track_name() }}
             </div>
             <div class="form-group">
-                {{ form.time_all.label }}<br>
-                {{ form.time_all() }}
+                {{ form.total_time.label }}<br>
+                {{ form.total_time() }}
             </div>
           </div>
           <div class="modal-footer">
@@ -118,13 +121,13 @@
             </script>
         </div>
         <div class="col-2">
-            {{ form.time_all.label }}
+            {{ form.track_name.label }}
         </div>
         <div class="col-1">
-            {{ form.time_all() }}
+            {{ form.track_name() }}
         </div>
         <div class="col-2">
-            <a class="btn btn-success" href="{{ url_for('tracks.login') }}" role="button">Add point</a>
+            <a class="btn btn-success" href="{{ url_for('tracks.tracks_points') }}" role="button">Add point</a>
         </div>
     </div>
     <br>
@@ -138,12 +141,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>2020-04-28</td>
-          <td>Learn python</td>
-          <td>4 hours</td>
-          <td>I like it!</td>
-        </tr>
+        {% for point in tracks.points %}
+            <tr>
+              <td>{{ points.date_reg }}</td>
+              <td>{{ points.track_name }}</td>
+              <td>{{ points.spent_time }}</td>
+              <td>{{ points.comment }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 </div>
