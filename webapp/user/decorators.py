@@ -1,6 +1,6 @@
 from functools import wraps
 
-from flask import current_app, flash, request, redirect, url_for
+from flask import current_app, flash, g, request, redirect, url_for
 from flask_login import config, current_user
 
 def admin_required(func):
@@ -13,7 +13,16 @@ def admin_required(func):
         elif not current_user.is_authenticated:
             return current_app.login_manager.unauthorized()
         elif not current_user.is_admin:
-            flash('This page is available only to admins')
-            return redirect(url_for('tracks.index'))
+            flash('You are not admin', 'warning')
+            return redirect(url_for("main.main"))
         return func(*args, **kwargs)
     return decorated_view
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        g.user = current_user
+        if g.user is None:
+            return redirect(url_for('user.login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function

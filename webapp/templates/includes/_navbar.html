@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-md navbar navbar-light fixed-top" style="background-color: #facf23;">
     <a class="navbar-brand mb-0 h1" href="{{ url_for('main.main') }}">
-        <img src="{{ url_for('static', filename='photoeditorsdk-export.png') }}" width="50" height="50" alt="">
         10,000-Hour Rule
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,21 +7,21 @@
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('about.about') }}">About us</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav navbar-right">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('about.about') }}">About us</a>
+                </li>
             {% if current_user.is_authenticated %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('user.profile') }}">Your profile</a>
+                    <a class="nav-link" href="{{ url_for( 'tracks.login') }}">Tracks</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for( 'tracks.tracks') }}">Tracks</a>
-                </li>
-                {% if current_user.is_admin %}<li class="nav-item active">
+                <ul class="navbar-nav navbar-right">                
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('user.profile') }}">My profile</a>
+                    </li>
+                    {% if current_user.is_admin %}
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{ url_for('user.admin_index') }}">Admin panel</a>
                     </li>
                 {% endif %}
@@ -33,6 +32,10 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ url_for('user.login') }}">Log in</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('user.register') }}">Register</a>
+                </li>
+            </ul>
             {% endif %}
         </ul>
     </div>

@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 
 from wtforms import BooleanField, StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
+from flask_wtf.file import FileField, FileAllowed
 
 from webapp.user.models import User
 
@@ -52,8 +54,11 @@ class ProfileForm(FlaskForm):
     user_password = PasswordField('Password',
                                   validators=[DataRequired(), EqualTo('confirm', message='Passwords do not match')],
                                   render_kw={"class": "form-control"})
-    date_reg = StringField('Name', validators=[DataRequired(), Length(min=1, max=50)],
-                           render_kw={"class": "form-control"})
-    picture_user = StringField('Name', validators=[DataRequired(), Length(min=1, max=50)],
-                               render_kw={"class": "form-control"})
-    submit = SubmitField('Update account', render_kw={"class": "btn btn-success"})
+    picture = FileField('Update Profile Picture',  validators=[FileAllowed(['jpg', 'png'])], render_kw={"class": "form-control"})
+    submit = SubmitField('Update', render_kw={"class": "btn btn-success"})
+
+    def validate_email(self, user_email):
+        if user_email.data != current_user.user_email:
+            user = User.query.filter_by(user_email=user_email.data).first()
+            if user:
+                raise ValidationError('That email is taken. Please choose a different one.')
