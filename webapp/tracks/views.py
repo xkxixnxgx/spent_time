@@ -1,8 +1,6 @@
-from flask import abort, Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import current_user, login_user, logout_user
+from flask import abort, Blueprint, render_template, flash, redirect, url_for
 from webapp.tracks.forms import TrackForm, TrackAddForm, PointForm, PointAddForm
 from webapp.tracks.models import Track, Point
-from webapp.user.models import User
 from datetime import datetime
 
 from webapp import db
