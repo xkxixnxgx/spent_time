@@ -21,7 +21,7 @@
     <div class="d-flex justify-content-between">
         <div class="col-2">
             <button type="button" class="btn btn-link">
-                <form action="{{ url_for('tracks.the_track') }}>
+                Track 1
             </button>
         </div>
         <div class="col-2">
@@ -141,14 +141,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for point in tracks.points %}
             <tr>
-              <td>{{ points.date_reg }}</td>
-              <td>{{ points.track_name }}</td>
-              <td>{{ points.spent_time }}</td>
-              <td>{{ points.comment }}</td>
+              <td>2020-05-02</td>
+              <td>Track 1</td>
+              <td>2 hours</td>
+              <td>It's good!</td>
             </tr>
-        {% endfor %}
         </tbody>
     </table>
 </div>
