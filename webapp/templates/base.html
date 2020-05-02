@@ -7,14 +7,28 @@
         <title>{{ page_title }}</title>
     </head>
     <body>
-        {% include 'includes/_navbar.html' %}
+        <br>
+        <br>
+        <br>
+        <br>
+        {% include 'includes/_navbar.html' %}       
         <div class='container'>
-            <br>
-            <br>
-            <br>
-            {% block content %}{% endblock %}
+            {% include 'includes/_messages.html' %}
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-10">
+                   {% block content %}{% endblock %}
+                </div>
+                <div class="col-1">
+                    <table>
+                        <tr><td style="text-align: center;"><canvas id="canvas_tt5e91e254d23e2" width="175" height="175"></canvas></td></tr>
+                        <tr><td style="text-align: center; font-weight: bold"><a href="//24timezones.com/Moscow/time" style="text-decoration: none" class="clock24" id="tz24-1586618964-c1166-eyJzaXplIjoiMTc1IiwiYmdjb2xvciI6IjAwQ0MwMCIsImxhbmciOiJlbiIsInR5cGUiOiJhIiwiY2FudmFzX2lkIjoiY2FudmFzX3R0NWU5MWUyNTRkMjNlMiJ9" title="timezone - Moscow" target="_blank"></a></td></tr>
+                    </table>
+                </div>
+            </div>
         </div>
-        
+        <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>    
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
