@@ -1,16 +1,154 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class='jumbotron text-center'>
-    <h1>
-        <div class="alert alert-secondary" role="alert">
-            Tracks
+<!--suppress ALL -->
+<link rel="import" href="calendar.html">
+<div class="container-md">
+    <br>
+    <br>
+    <div class="row justify-content-md-centre">
+        <div class="col"></div>
+        <div class="col-2">
+            <h1>
+                Tracks
+            </h1>
         </div>
-    </h1>
-    <p>Tracks 1</p>
-    <p>Tracks 2</p>
-    <p>Tracks 3</p>
-    <button type="button" class="btn btn-success">Add</button>
+        <div class="col"></div>
+    </div>
+    <br>
+    <br>
+    <form action="{{ url_for('tracks.tracks_points') }}" method="GET">
+    <div class="d-flex justify-content-between">
+        <div class="col-2">
+            <button type="button" class="btn btn-link">
+                Track 1
+            </button>
+        </div>
+        <div class="col-2">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter_1">
+              Edit
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle_1" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle_1">Edit the track</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                        {{ form.track_name.label }}
+                        {{ form.track_name() }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.total_time.label }}<br>
+                        {{ form.total_time() }}
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="progress"  style="height: 10px;">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+    </div>
+    <br>
+    <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter_2">
+              Add track
+            </button>
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="exampleModalCenterTitle_2" class="modal fade" id="exampleModalCenter_2"
+         role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle_2">Please add new track</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+                {{ form.track_name.label }}
+                {{ form.track_name() }}
+            </div>
+            <div class="form-group">
+                {{ form.total_time.label }}<br>
+                {{ form.total_time() }}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success">Add track</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-3">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Change your track
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                </div>
+            </div>
+        </div>
+        <h6 class="text-center">Date for point</h6>
+        <div class="col-2">
+            <div class="controls">
+                <input class="datepicker form-control" type="text"/>
+            </div>
+            <script>
+                var link = document.querySelector('link[rel=import]');
+                var content = link.import.querySelector('#calendar-dm');
+                document.body.appendChild(content.cloneNode(true));
+            </script>
+        </div>
+        <div class="col-2">
+            {{ form.track_name.label }}
+        </div>
+        <div class="col-1">
+            {{ form.track_name() }}
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" href="{{ url_for('tracks.tracks_points') }}" role="button">Add point</a>
+        </div>
+    </div>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Track name</th>
+          <th scope="col">Spent time</th>
+          <th scope="col">Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>2020-05-02</td>
+              <td>Track 1</td>
+              <td>2 hours</td>
+              <td>It's good!</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}
