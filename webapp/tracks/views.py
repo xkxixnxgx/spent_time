@@ -11,7 +11,7 @@ from webapp import db
 blueprint = Blueprint('tracks', __name__,  url_prefix='/tracks')
 
 
-@blueprint.route('/', method=['GET'])
+@blueprint.route('/')
 def tracks_points():
     tittle = 'Tracks'
     tracks_form = TrackForm()

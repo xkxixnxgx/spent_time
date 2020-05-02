@@ -23,8 +23,8 @@ class Point(db.Model):
     date_add = db.Column(db.DateTime, nullable=False, default=datetime.now())
     time_value = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.Text, nullable=True)
-    track_id = db.Column(db.Integer, db.ForeignKey('track.id'), on_delete='CASCADE', index=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), on_delete='CASCADE', index=True)
+    track_id = db.Column(db.Integer, db.ForeignKey('track.id'), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), index=True)
     track = relationship('Track', backref='points')
     user = relationship('User', backref='points')
 
