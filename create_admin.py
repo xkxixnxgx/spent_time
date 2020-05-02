@@ -26,7 +26,7 @@ with app.app_context(): # строка после которой можно ра
     picture_user = input('Write the name of the avatar:')
     username = input('Write a nickname:')
 
-    new_user = User(user_email=user_email, role='admin', date_reg=date_reg, picture_user=picture_user, username=username)
+    new_user = User(user_email=user_email, role='admin', date_reg=date_reg, picture=picture_user, username=username)
     new_user.set_password(password)
 
     db.session.add(new_user)

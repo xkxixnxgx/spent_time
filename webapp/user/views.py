@@ -58,7 +58,7 @@ def process_login():
         if user and user.check_password(form.user_password.data):
             login_user(user, remember=form.remember_me.data)
             flash('You have successfully logged in', 'success')
-            return redirect(url_for('tracks.login'))
+            return redirect(url_for('tracks.tracks_points'))
         else:
             flash('Login nsuccessful. Please check email and password', 'warning')
     return redirect(url_for('user.login'))
@@ -99,7 +99,7 @@ def profile():
         elif request.method == 'GET':
             form.username.data = current_user.username
             form.user_email.data = current_user.user_email
-        image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+        image_file = url_for('static', filename='profile_pics/' + current_user.picture)
         return render_template('user/profile.html', page_title=title, image_file=image_file, form=form)
     else:
         flash('You are not authenticated. Please login.', 'warning')

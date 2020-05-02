@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
     user_password = db.Column(db.String(128), nullable=False)
     role = db.Column(db.String(10), index=True, nullable=False)
     date_reg = db.Column(db.String(12), nullable=False)
-    image_file = db.Column(db.String(70), nullable=False, default='default.jpg')
+    picture = db.Column(db.String(70), nullable=False, default='default.jpg')
     username = db.Column(db.String(50), index=True, nullable=True)
 
     def set_password(self, user_password):
