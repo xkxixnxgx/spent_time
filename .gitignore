@@ -5,3 +5,5 @@ s_t/
 *.db
 config.py
 create_db.py
+migrations
+*.pyc
