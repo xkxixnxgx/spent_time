@@ -28,11 +28,11 @@ License
 
 Local installation
 ------------------
-###### You will need:
+##### You will need:
 1. Python 3.7
 2. pip3
 3. venv
-###### Steps:
+##### Steps:
 1. Copy the repository to a folder on PC.
 2. In the project folder install packages with commands in the console: 
    ````
