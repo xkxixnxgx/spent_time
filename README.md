@@ -39,7 +39,7 @@ Local installation
    python3 install -m venv env
    pip3 install -r requirements.txt
    python3 create_db.py
-   ./web_run.sh
+   ./run_web.sh
    
 3. Enter in the browser:
    <http://127.0.0.1:5000/>

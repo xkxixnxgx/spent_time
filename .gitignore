@@ -1,7 +1,9 @@
 .vscode/
+.idea
 __pycache__/
 env/
 s_t/
+env_3.8/
 *.db
 config.py
 create_db.py
