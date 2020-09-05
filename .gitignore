@@ -2,10 +2,11 @@
 .idea
 __pycache__/
 env/
-s_t/
-env_3.8/
+env_st/
+.python-version
 *.db
 config.py
 create_db.py
 migrations
 *.pyc
+.gitignore
