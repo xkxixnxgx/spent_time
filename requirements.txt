@@ -32,7 +32,7 @@ psycopg2-binary==2.8.4
 psycopg2-pool==1.1
 ptyprocess==0.6.0
 public==2019.4.13
-Pygments==2.6.1
+Pygments==2.7.4
 pylint==2.4.4
 python-dateutil==2.8.1
 python-editor==1.0.4
