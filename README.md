@@ -4,11 +4,11 @@ Spent Time
 Legend
 -----------
 
-###### The Story of Success is the third non-fiction book written by Malcolm Gladwell and published by Little, Brown and Company on November 18, 2008. In Outliers, Gladwell examines the factors that contribute to high levels of success. To support his thesis, he examines why the majority of Canadian ice hockey players are born in the first few months of the calendar year, how Microsoft co-founder Bill Gates achieved his extreme wealth, how the Beatles became one of the most successful musical acts in human history, how Joseph Flom built Skadden, Arps, Slate, Meagher & Flom into one of the most successful law firms in the world, how cultural differences play a large part in perceived intelligence and rational decision making, and how two people with exceptional intelligence, Christopher Langan and J. Robert Oppenheimer, end up with such vastly different fortunes. Throughout the publication, Gladwell repeatedly mentions the "10,000-Hour Rule", claiming that the key to achieving world-class expertise in any skill, is, to a large extent, a matter of practicing the correct way, for a total of around 10,000 hours.
+##### The Story of Success is the third non-fiction book written by Malcolm Gladwell and published by Little, Brown and Company on November 18, 2008. In Outliers, Gladwell examines the factors that contribute to high levels of success. To support his thesis, he examines why the majority of Canadian ice hockey players are born in the first few months of the calendar year, how Microsoft co-founder Bill Gates achieved his extreme wealth, how the Beatles became one of the most successful musical acts in human history, how Joseph Flom built Skadden, Arps, Slate, Meagher & Flom into one of the most successful law firms in the world, how cultural differences play a large part in perceived intelligence and rational decision making, and how two people with exceptional intelligence, Christopher Langan and J. Robert Oppenheimer, end up with such vastly different fortunes. Throughout the publication, Gladwell repeatedly mentions the "10,000-Hour Rule", claiming that the key to achieving world-class expertise in any skill, is, to a large extent, a matter of practicing the correct way, for a total of around 10,000 hours.
 
 Goals
 -----
-###### Some people find it difficult to keep in mind goals that take a long time to achieve and yet time is distributed. We are solving this problem. We record the time spent on certain tasks and output statistics about how much time is spent on a particular task, and how intensely we devote ourselves to the task at hand.
+##### Some people find it difficult to keep in mind goals that take a long time to achieve and yet time is distributed. We are solving this problem. We record the time spent on certain tasks and output statistics about how much time is spent on a particular task, and how intensely we devote ourselves to the task at hand.
 
 Rules and Tips
 --------------
@@ -30,14 +30,15 @@ Local installation
 ------------------
 ##### You will need:
 1. Python 3.7
-2. pip3
-3. venv
+2. Pyenv
+3. Poetry
 ##### Steps:
 1. Copy the repository to a folder on PC.
 2. In the project folder install packages with commands in the console: 
    ````
-   python3 install -m venv env
-   pip3 install -r requirements.txt
+   pyenv virtualenv spent_time
+   pyenv activate spent_time
+   poetry install
    python3 create_db.py
    ./run_web.sh
    
